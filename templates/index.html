@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodSense AI - Emotional Intelligence Assistant</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Background -->
+    <div class="bg-gradient"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🧠</span>
+                <h1>MoodSense AI</h1>
+            </div>
+            <p class="tagline">Emotional Intelligence for Better Communication</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="text">
+                💬 Text Analyzer
+            </button>
+            <button class="tab-btn" data-tab="voice">
+                🎤 Voice Analyzer
+            </button>
+            <button class="tab-btn" data-tab="face">
+                😊 Face Analyzer
+            </button>
+            <button class="tab-btn" data-tab="dashboard">
+                📊 Dashboard
+            </button>
+        </nav>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- TEXT ANALYZER TAB -->
+            <div id="text-tab" class="tab-pane active">
+                <div class="card">
+                    <h2>📝 Analyze Text Message</h2>
+                    <p class="subtitle">Detect emotion and get communication guidance</p>
+
+                    <textarea id="text-input" class="text-input"
+                        placeholder='Enter a message like: "Fine. Do whatever you want."' rows="4"></textarea>
+
+                    <button id="analyze-text-btn" class="btn btn-primary">
+                        Analyze Message
+                    </button>
+
+                    <!-- Results -->
+                    <div id="text-results" class="results hidden">
+                        <div class="result-grid">
+                            <div class="result-card">
+                                <span class="result-label">Detected Emotion</span>
+                                <span id="text-emotion" class="result-value"></span>
+                            </div>
+                            <div class="result-card">
+                                <span class="result-label">Risk Level</span>
+                                <span id="text-risk" class="result-value risk-badge"></span>
+                            </div>
+                            <div class="result-card">
+                                <span class="result-label">Confidence</span>
+                                <span id="text-confidence" class="result-value"></span>
+                            </div>
+                        </div>
+
+                        <!-- Advice Section -->
+                        <div class="advice-section">
+                            <h3>💡 Suggested Response</h3>
+                            <p id="text-suggestion" class="suggestion-text"></p>
+
+                            <h3>⚠️ Things to Avoid</h3>
+                            <ul id="text-avoid" class="warning-list"></ul>
+
+                            <h3>✅ Suggested Replies</h3>
+                            <div id="text-replies" class="replies-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VOICE ANALYZER TAB -->
+            <div id="voice-tab" class="tab-pane">
+                <div class="card">
+                    <h2>🎤 Analyze Voice Tone</h2>
+                    <p class="subtitle">Detect emotional tone from voice recordings</p>
+
+                    <div class="upload-section">
+                        <input type="file" id="voice-upload" accept=".wav,.mp3,.m4a,.ogg" hidden>
+                        <button id="voice-upload-btn" class="btn btn-secondary">
+                            📁 Upload Audio File
+                        </button>
+                        <p class="upload-help">Supported: WAV, MP3, M4A, OGG (Max 10MB)</p>
+                    </div>
+
+                    <!-- Voice Recording Section -->
+                    <div class="recording-section">
+                        <div class="divider"><span>OR</span></div>
+
+                        <button id="record-voice-btn" class="btn btn-outline">
+                            🎤 Record Voice
+                        </button>
+
+                        <div id="recording-controls" class="hidden">
+                            <div class="recording-status">
+                                <div class="recording-dot"></div>
+                                <span id="recording-time">00:00</span>
+                            </div>
+                            <button id="stop-recording-btn" class="btn btn-danger">
+                                Stop & Analyze
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="voice-file-name" class="file-name hidden"></div>
+
+                    <button id="analyze-voice-btn" class="btn btn-primary hidden">
+                        Analyze Voice
+                    </button>
+
+                    <!-- Results -->
+                    <div id="voice-results" class="results hidden">
+                        <div class="result-grid">
+                            <div class="result-card">
+                                <span class="result-label">Detected Tone</span>
+                                <span id="voice-tone" class="result-value"></span>
+                            </div>
+                            <div class="result-card">
+                                <span class="result-label">Emotion</span>
+                                <span id="voice-emotion" class="result-value"></span>
+                            </div>
+                            <div class="result-card">
+                                <span class="result-label">Risk Level</span>
+                                <span id="voice-risk" class="result-value risk-badge"></span>
+                            </div>
+                            <div class="result-card">
+                                <span class="result-label">Stress Level</span>
+                                <span id="voice-stress" class="result-value"></span>
+                            </div>
+                        </div>
+
+                        <div class="advice-section">
+                            <h3>📊 Voice Features</h3>
+                            <div id="voice-features" class="features-grid"></div>
+
+                            <h3>💭 Interpretation</h3>
+                            <p id="voice-interpretation" class="suggestion-text"></p>
+
+                            <h3>⚠️ Things to Avoid</h3>
+                            <ul id="voice-avoid" class="warning-list"></ul>
+
+                            <h3>✅ Suggested Replies</h3>
+                            <div id="voice-replies" class="replies-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FACE ANALYZER TAB -->
+            <div id="face-tab" class="tab-pane">
+                <div class="card">
+                    <h2>😊 Analyze Facial Expression</h2>
+                    <p class="subtitle">Detect emotions from facial expressions</p>
+
+                    <!-- Privacy Notice -->
+                    <div class="privacy-notice">
+                        <h3>🔒 Privacy Notice</h3>
+                        <p>
+                            By using this feature, you consent to facial analysis.
+                            No images are stored without your permission.
+                            Your privacy is our priority.
+                        </p>
+                    </div>
+
+                    <div class="upload-section">
+                        <input type="file" id="face-upload" accept="image/*" hidden>
+                        <button id="face-upload-btn" class="btn btn-secondary">
+                            📷 Upload Photo
+                        </button>
+                        <p class="upload-help">Upload a clear photo showing your face</p>
+                    </div>
+
+                    <!-- Camera Section -->
+                    <div class="camera-section">
+                        <div class="divider"><span>OR</span></div>
+
+                        <button id="use-camera-btn" class="btn btn-outline">
+                            📷 Use Camera
+                        </button>
+
+                        <div id="camera-container" class="hidden">
+                            <video id="camera-feed" autoplay playsinline></video>
+                            <canvas id="camera-canvas" class="hidden"></canvas>
+                            <button id="capture-btn" class="btn btn-primary">
+                                Capture & Analyze
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="face-preview" class="face-preview hidden"></div>
+
+                    <button id="analyze-face-btn" class="btn btn-primary hidden">
+                        Analyze Expression
+                    </button>
+
+                    <!-- Results -->
+                    <div id="face-results" class="results hidden">
+                        <div class="result-grid">
+                            <div class="result-card">
+                                <span class="result-label">Detected Emotion</span>
+                                <span id="face-emotion" class="result-value"></span>
+                            </div>
+                            <div class="result-card">
+                                <span class="result-label">Risk Level</span>
+                                <span id="face-risk" class="result-value risk-badge"></span>
+                            </div>
+                            <div class="result-card">
+                                <span class="result-label">Confidence</span>
+                                <span id="face-confidence" class="result-value"></span>
+                            </div>
+                        </div>
+
+                        <div class="advice-section">
+                            <h3>📊 Emotion Breakdown</h3>
+                            <div id="face-emotions" class="features-grid"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DASHBOARD TAB -->
+            <div id="dashboard-tab" class="tab-pane">
+                <div class="card">
+                    <h2>📊 Analysis Dashboard</h2>
+                    <p class="subtitle">View your emotional intelligence insights</p>
+
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-value" id="total-analyses">0</span>
+                            <span class="stat-label">Total Analyses</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value" id="trend-status">-</span>
+                            <span class="stat-label">Trend</span>
+                        </div>
+                    </div>
+
+                    <!-- Risk Distribution -->
+                    <div class="dashboard-section">
+                        <h3>⚠️ Risk Distribution</h3>
+                        <div id="risk-distribution" class="distribution-bars"></div>
+                    </div>
+
+                    <!-- Emotion Distribution -->
+                    <div class="dashboard-section">
+                        <h3>😊 Emotion Distribution</h3>
+                        <div id="emotion-distribution" class="distribution-bars"></div>
+                    </div>
+
+                    <!-- Recent History -->
+                    <div class="dashboard-section">
+                        <h3>📜 Recent Analyses</h3>
+                        <div id="recent-history" class="history-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="ethical-notice">
+                MoodSense AI is designed to improve emotional awareness and communication.
+                Use with consent and respect for privacy. Not a replacement for professional advice.
+            </p>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p>Analyzing...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>

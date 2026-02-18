@@ -1,0 +1,31 @@
+# FastAPI Framework
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.6
+websockets==12.0
+
+# AI/ML Models
+transformers==4.37.0
+torch==2.1.2
+sentencepiece==0.1.99
+
+# Audio Processing
+librosa==0.10.1
+soundfile==0.12.1
+numpy==1.26.3
+
+# Computer Vision
+opencv-python==4.9.0.80
+deepface==0.0.79
+tensorflow==2.15.0
+kagglehub==0.2.0
+
+# Database
+psycopg2-binary==2.9.9
+sqlalchemy==2.0.25
+alembic==1.13.1
+
+# Utilities
+python-dotenv==1.0.0
+pydantic==2.5.3
+scikit-learn==1.4.0
